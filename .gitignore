@@ -44,10 +44,14 @@ playground.xcworkspace
 # https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
 #
 <<<<<<< HEAD
+<<<<<<< HEAD
  Pods/
 =======
 # Pods/
 >>>>>>> ce53d104394fc41fb58b14da4fd74619a5a46d9e
+=======
+ Pods/
+>>>>>>> 363d9f12ad888cadcbbacb3984c0c2cb2a3c2333
 
 # Carthage
 #
