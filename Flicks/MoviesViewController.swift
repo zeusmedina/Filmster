@@ -11,24 +11,51 @@ import AFNetworking
 import MBProgressHUD
 
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+    /*UISearchResultsUpdating*/
 {
 
     @IBOutlet weak var tableView: UITableView!
     
+   
     var movies: [NSDictionary]?
     var endpoint: String!
+    var searchController: UISearchController!
+    var filteredData: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
         
+        
+        // Initializing with searchResultsController set to nil means that
+        // searchController will use this view controller to display the search results
+        
+        searchController = UISearchController(searchResultsController: nil)
+        //searchController.searchResultsUpdater = self
+        
+        // If we are using this same view controller to present the results
+        // dimming it out wouldn't make sense.  Should set probably only set
+        // this to yes if using another controller to display the search results.
+        
+        
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        tableView.tableHeaderView = searchController.searchBar
+        
+        // Sets this view controller as presenting view controller for the search interface
+        definesPresentationContext = true
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshControlAction:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
-       
-        // Do any additional setup after loading the view.
-        tableView.dataSource = self
-        tableView.delegate = self
+
+        
+        
+        
+        
         
         let apiKey = "4d21457ec061216428cf33f6389e48cc"
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/\(endpoint)?api_key=\(apiKey)")
@@ -159,14 +186,28 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let cell = sender as! UITableViewCell
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.grayColor()
+    
+        cell.selectedBackgroundView = backgroundView
         let indexPath = tableView.indexPathForCell(cell)
         let movie = movies![indexPath!.row]
         let detailViewController = segue.destinationViewController as! DetailViewController
         detailViewController.movie = movie
-        
+        cell.selectionStyle = .None
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
+    
+    /*func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filteredData = searchText.isEmpty ? movies : data.filter({(dataString: String) -> Bool in
+                return dataString.rangeOfString(searchText, options: .CaseInsensitiveSearch) != nil
+            })
+            
+            tableView.reloadData()
+        }
+    }*/
 
 
 }
