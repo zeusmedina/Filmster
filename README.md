@@ -92,13 +92,13 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/1r2npGn.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/AHYFFzf.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I'm having an extremely hard time implementing search. Will continue to work on it.
+Potential features to be added include: better user interface, more information about a particular film, and the ability to purchase tickets.
 
 ## License
 
